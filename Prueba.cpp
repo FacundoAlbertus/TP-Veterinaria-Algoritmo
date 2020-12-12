@@ -4,6 +4,6 @@
 
 struct
 {
-	
+	printf ("HOla gato tonto");
 	
 };
