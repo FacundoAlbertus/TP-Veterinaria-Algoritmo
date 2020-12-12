@@ -5,5 +5,6 @@
 struct
 {
 	printf ("HOla gato tonto");
+	printf ("otro cambio");
 	
 };
