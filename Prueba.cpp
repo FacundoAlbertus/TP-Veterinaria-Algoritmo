@@ -149,7 +149,34 @@ main ()
 				opad = -1;
 				opad = menuadmin();
 				system ("cls");
-				switch 
+				switch(opad)
+				{
+					case 1:
+					{
+						printf("\nRegistrar Veterinario\n");
+						break;
+					}
+					case 2:
+					{
+						printf("\nRegistrar Usuario Asistente\n");
+						break;
+					}
+					case 3:
+					{
+						printf("\nAtenciones por Veterinarios\n");
+						break;
+					}
+					case 4:
+					{
+						printf("\nEl programa finalizo\n");
+						break;
+					}
+					default
+					{
+						printf("Opcion seleccionada incorrecta");
+						break;
+					}
+				}
 				
 			}
 			
@@ -174,7 +201,7 @@ int menu ()
     printf("\n4-Cerrar el programa\n");
 
     printf("\nIngrese la opcion: ");
-    scanf("%d", opcion);
+    scanf("%d", &opcion);
 
 }
 
@@ -189,7 +216,7 @@ void menuadmin()
 	printf("\n4-Cerrar la aplicación");
 	
 	printf("\nIngrese una opcion");
-	scanf("%d", opcadmin);
+	scanf("%d", &opcadmin);
 }
 
 
@@ -207,7 +234,7 @@ void menuconsult()
     printf("\n4-Cerrar el programa");
 
     printf("\nIngrese la opcion: ");
-    scanf("%d", opcconsult);
+    scanf("%d", &opcconsult);
 
 }
 
@@ -224,8 +251,13 @@ void menuasistente()
 	printf("\n5-Cerrar la aplicación");
 	
 	printf("\nIngrese la opcion: ");
-	scanf("%d", opcasist);	
+	scanf("%d", &opcasist);	
 }
 
-
+void reg()
+{
+	int i;
+	
+	
+}
 
