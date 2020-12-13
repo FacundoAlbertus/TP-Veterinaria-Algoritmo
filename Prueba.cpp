@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
+
 struct fecha
 {
     int dia;
@@ -48,9 +49,120 @@ struct mascota
 
 main ()
 {
+	int op=-1,opcon = -1;
+	turnos t; mascota m; usuario u; veterinario v;
+	do{
+		op=menu();
+		system ("cls");
+		switch(op)
+		{
+		case 1: 
+		{	
+			do
+			{
+				opcon = -1;
+				opcon = menuconsult();
+				system ("cls");
+				switch(opcon)
+				{
+					case 1:
+					{
+						printf ("\nIniciar sesion\n");
+						break;
+					}
+					case 2: 
+					{
+						printf("\nVisualizar Lista de Espera de Turnos\n");
+						break;
+					}
+					case 3:
+					{
+						printf("\nRegistrar Evolución de la Mascota\n");
+						break;
+					}
+					case 4:
+					{
+						printf("\nEl programa finalizo\n");
+						break;
+					}
+					default 
+					{
+						printf("Opcion seleccionada incorrecta");
+						break;
+					}
+				
+				}
+	
+			}
+			break;
+		}
+		case 2:
+		{
+			do
+			{
+				opasis = -1;
+				opasis = menuasistente();
+				system("cls");
+				switch (opasis)
+				{
+				
+				case 1:
+				{
+					printf("\nIniciar Sesión\n");
+					break;
+				}	
+				case 2:
+				{
+					printf("\nRegistrar Mascota\n");
+					break;
+				}
+				case 3:
+				{
+					printf("\nListado de Atenciones por Veterinario y Fecha\n")
+					break;
+				}
+				case 4:
+				{
+					printf("\nListado de Atenciones por Veterinario y Fecha\n");
+					break;
+				}
+				case 5:
+				{
+					printf("\nEl programa finalizo\n");
+					break;
+				}
+				default
+				{
+					printf("Opcion seleccionada incorrecta");
+					break;
+				}
+				
+			}
+			break;
+				
+			}
+		}
+		case 3:
+		{
+			do
+			{
+				opad = -1;
+				opad = menuadmin();
+				system ("cls");
+				switch 
+				
+			}
+			
+			break;
+		}
+			
+		}
+	 
 	
 	
+	}while
 }
+
 int menu ();
 int menu ()
 {
@@ -65,6 +177,24 @@ int menu ()
     scanf("%d", opcion);
 
 }
+
+void menuadmin();
+void menuadmin()
+{
+	int opcadmin=-1;
+	printf("\t\tMenu Administracion\n\n");
+	printf("1-Registrar Veterinario");
+	printf("2-Registrar Usuario Asistente");
+	printf("3-Atenciones por Veterinarios");
+	printf("\n4-Cerrar la aplicación");
+	
+	printf("\nIngrese una opcion");
+	scanf("%d", opcadmin);
+}
+
+
+
+
 void menuconsult();
 void menuconsult()
 {
@@ -94,7 +224,8 @@ void menuasistente()
 	printf("\n5-Cerrar la aplicación");
 	
 	printf("\nIngrese la opcion: ");
-	scanf("%d", opcasist);
-	
+	scanf("%d", opcasist);	
 }
+
+
 
