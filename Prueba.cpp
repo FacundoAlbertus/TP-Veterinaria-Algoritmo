@@ -51,15 +51,33 @@ main ()
 	
 	
 }
-
+int menu ();
 int menu ()
 {
-	printf("\t\tMenu principal\n\n");
-	
-	printf("1-Modulo Consultorio Veterinario");
-	printf("2-Modulo del asistente");
-	
-	
-	
+    int opcion=-1
+    printf("\t\tMenu principal\n\n");
+    printf("1-Modulo Consultorio Veterinario");
+    printf("2-Modulo del asistente");
+    printf("3-Modulo Administracion");
+    printf("\n4-Cerrar el programa\n");
+
+    printf("\nIngrese la opcion: ");
+    scanf("%d", opcion);
+
+}
+int menuconsult();
+int menuconsult()
+{
+    int opcion=-1
+
+    printf("\t\tMenu  Consultorio Veterinario");
+    printf("1-Iniciar Secion");
+    printf("2-Visualizar Lista de Espera de Turnos");
+    printf("3-Registrar Evolución de la Mascota");
+    printf("\n4-Cerrar el programa");
+
+    printf("\nIngrese la opcion: ");
+    scanf("%d", opcion);
+
 }
 
