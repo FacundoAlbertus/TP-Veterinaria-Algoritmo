@@ -54,7 +54,7 @@ main ()
 int menu ();
 int menu ()
 {
-    int opcion=-1
+    int opcion=-1;
     printf("\t\tMenu principal\n\n");
     printf("1-Modulo Consultorio Veterinario");
     printf("2-Modulo del asistente");
@@ -65,19 +65,35 @@ int menu ()
     scanf("%d", opcion);
 
 }
-int menuconsult();
-int menuconsult()
+void menuconsult();
+void menuconsult()
 {
-    int opcion=-1
+    int opcconsult=-1;
 
-    printf("\t\tMenu  Consultorio Veterinario");
+    printf("\t\tMenu Consultorio Veterinario\n\n");
     printf("1-Iniciar Secion");
     printf("2-Visualizar Lista de Espera de Turnos");
     printf("3-Registrar Evolución de la Mascota");
     printf("\n4-Cerrar el programa");
 
     printf("\nIngrese la opcion: ");
-    scanf("%d", opcion);
+    scanf("%d", opcconsult);
 
+}
+
+void menuasistente()
+{
+	int opcasist=-1;
+	printf("\t\tMenu del asistente\n\n");
+	
+	printf("1-Iniciar Sesión");
+	printf("2-Registrar Mascota");
+	printf("3-Registrar Turno");
+	printf("4-Listado de Atenciones por Veterinario y Fecha");
+	printf("\n5-Cerrar la aplicación");
+	
+	printf("\nIngrese la opcion: ");
+	scanf("%d", opcasist);
+	
 }
 
