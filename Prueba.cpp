@@ -81,6 +81,7 @@ void menuconsult()
 
 }
 
+void menuasistente();
 void menuasistente()
 {
 	int opcasist=-1;
