@@ -49,7 +49,17 @@ struct mascota
 main ()
 {
 	
-}
-
 	
 }
+
+int menu ()
+{
+	printf("\t\tMenu principal\n\n");
+	
+	printf("1-Modulo Consultorio Veterinario");
+	printf("2-Modulo del asistente");
+	
+	
+	
+}
+
