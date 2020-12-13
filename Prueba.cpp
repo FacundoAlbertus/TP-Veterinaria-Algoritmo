@@ -44,3 +44,12 @@ struct mascota
     float peso;
     char tel[25];
 };
+
+
+main ()
+{
+	
+	
+	printf ("nico gay");
+	
+}
