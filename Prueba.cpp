@@ -49,7 +49,7 @@ struct mascota
 main ()
 {
 	
-	
-	printf ("nico gay");
+}
+
 	
 }
