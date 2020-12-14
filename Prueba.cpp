@@ -236,6 +236,21 @@ void Turnomasc (FILE *tur, FILE *vet, FILE *mas, veterinario v, turnos t, mascot
 				printf("\nOpcion: ");
 				scanf("%d",&op);
 }
+void regeva (FILE *tur, turnos t);
+void regeva (FILE *tur, turnos t)	
+{
+	int op;
+    tur=fopen("turnos.dat","a+b");
+    _flushall();
+    printf("\nRegistre la evolucion de la mascota: ");
+	gets(t.detalle);
+	fwrite(&t, sizeof(turnos), 1,tur);
+	system("pause");
+	system("cls");
+	printf("Ingrese la proxima operacion a realizar: \n\n2-Visualizar lista de espera de mascotas \n3-Registrar evolucion de los mascotas\n\n4-Salir del programa");
+	printf("\nOpcion: ");
+	scanf("%d", &op);
+}
 void reg(veterinario v,FILE *vet);
 void reg(veterinario v,FILE *vet)
 {
@@ -904,6 +919,7 @@ main ()
 					case 3:
 					{
 						printf("\nRegistrar Evolución de la Mascota\n");
+						regeva (tur, t);
 						break;
 					}
 					case 4:
