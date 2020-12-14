@@ -467,7 +467,7 @@ void ate(usuario u,turnos t,veterinario v,char auvet[80]);
 void ate(usuario u,turnos t, veterinario v, char auvet[80])
 {
 	int i=0;
-	FILE *tur, *user, *vet;
+	FILE *tur,*vet;
 	vet=fopen("Veterinarios.dat","r+b");
 	tur=fopen("turnos.dat","r+b");
 						
@@ -539,6 +539,189 @@ void rank(usuario u)
 	printf("El veterinario que registro mas mascotas es: %s con %d mascotas", umayor, mayor);					
 						
 }
+void VerifInicioSesion(usuario u);
+void VerifInicioSesion(usuario u)
+{
+ FILE *user;
+ user=("Usuarios.dat","r+b");
+ char iniu[10], inic[10];
+ printf("\nUsuario: ");
+			_flushall();
+			gets(iniu);
+			
+			b1=false; b2=false;  
+			while(b1==false)
+			{
+				rewind(user);
+				fread(&u,sizeof(usuario),1,user);
+				while(!feof(user))
+				{
+					if(strcmp(iniu,u.usuario)==0)
+					{
+						b1=true;
+					}
+					else
+					{
+						b1=false;
+					}
+					fread(&u,sizeof(usuario),1,user);
+				}
+				
+				if(b1==false)
+				{
+					printf("\nEl nombre de usuario ingresado no esta registrado, por favor digite otro: ");
+					gets(iniu);
+				}
+				
+			}
+			
+			printf("Contrase%ca:",164);
+			_flushall();
+			gets(inic);
+			
+			
+			
+			while(b2==false)
+			{
+				if(strcmp(inic,u.contrasenia)==0)
+				{
+					b2=true;
+					printf("\nContrase%ca aceptada", 164);
+				}
+				else
+				{
+					b2=false;
+				}
+				
+				if(b2==false)
+				{
+					printf("\nLa contrase%ca ingresada es incorrecta, por favor intente de nuevo: ");
+					gets(inic);
+					b2=false;
+				}
+			}
+			
+			if(b1==true && b2==true)
+			{
+				printf("\n\nIniciaste sesi%cn correctamente, Bienvendido %s",162, iniu);
+			}
+			
+			system("pause");
+			system("cls");
+}
+
+void RegMascota(mascota m);
+void RegMascota(mascota m)
+{
+  FILE *mas;
+  mas=fopen("Mascotas.dat","a+b");
+				
+				printf("\nREGISTRACION DE MASCOTAS\n");
+				_flushall();
+				printf("Apellido y nombre: ");
+			    gets(m.apynom);
+			    printf("Domicilio: ");
+			    gets(m.domicilio);
+			    printf("DNI del dueño: ");
+			    scanf("%d",&m.dni);
+			    _flushall();
+			    printf("Localidad: ");
+			    gets(m.localidad);
+			    printf("Fecha de nacimiento:");
+			    printf("\nDia: ");
+			    scanf("%d",&m.fn.dia);
+				printf("\nMes: ");
+			    scanf("%d",&m.fn.mes);
+			    printf("\nA%co: ",164);
+			    scanf("%d",&m.fn.anio);
+			    printf("Peso (kg): ");
+			    scanf("%f",&m.peso);
+			    _flushall();
+			    printf("Ingrese el numero de telefono: ");
+			    gets(m.tel);
+			    fwrite(&m,sizeof(mascota),1,mas);
+				printf("\nLa mascota fue guardado correctamente");
+				system("pause");
+				system("cls");   
+}
+
+void RegTurno(turnos t);
+void RegTurno(turnos t)  //ver los cierres de archivos
+{
+ FILE *tur;
+ tur=fopen("turnos.dat","r+b");
+ printf("\nMatricula del veterinario: ");
+					scanf("%d",&t.mat);
+					printf("\nFecha:\n");
+					printf("\nDia: ");
+			    	scanf("%d",&t.fn.dia);
+					printf("\nMes: ");
+			   		scanf("%d",&t.fn.mes);
+			   		printf("\nA%co: ",164);
+			   		scanf("%d",&t.fn.anio);
+					printf("DNI del dueño: ");
+					scanf("%d",&t.dni);
+					_flushall();
+					printf("Detalle de atencion: ");
+					gets(t.detalle);
+					
+					
+					
+					fwrite(&t,sizeof(turnos),1,tur);	
+					printf("\nEl turno fue guardado correctamente");
+					system("pause");
+					system("cls");
+}
+
+void ListadoAtenciones(turnos t, mascota m,veterinario v, char auvet[80]);
+void ListadoAtenciones(turnos t, mascota m,veterinario v, char auvet[80])
+{
+  FILE *mas,*tur,*vet;
+  tur=fopen("turnos.dat","r+b");
+  mas=fopen("Mascotas.dat","a+b");
+  vet = fopen("veter.dat", "a+b");
+  
+  
+	printf("Veterinario: ");
+	_flushall();
+	gets(auvet);
+	fread(&v,sizeof(veterinario),1,vet);
+	fread(&t,sizeof(turnos),1,tur);
+	fread(&m,sizeof(mascota),1,mas);
+	while(!feof(vet)&&!feof(tur)&&!feof(mas))
+	{
+	 if(strcmp(auxvet,v.apynom)==0)
+		{
+		 if(t.mat==v.matricula)
+		 {
+			printf("\nNombre de la mascota: %s",m.apynom);
+			printf("\nFecha de turno:");
+			printf("\nDia: %d", t.fn.dia);
+			printf("\nMes: %d", t.fn.mes);
+			printf("\nA%co: %d",164, t.fn.anio);
+			printf("\nNombre del veterinario: %s",v.apynom);
+			printf("\nMatricula: %d",v.matricula);
+			fread(&v,sizeof(veterinario),1,vet);
+			fread(&t,sizeof(turnos),1,tur);
+			fread(&m,sizeof(mascota),1,mas);
+		 }
+		 else
+		 {
+			fread(&v,sizeof(veterinario),1,vet);
+		  fread(&t,sizeof(turnos),1,tur);
+			fread(&m,sizeof(mascota),1,mas);
+		 }	
+		}
+		else
+		{
+		 fread(&v,sizeof(veterinario),1,vet);
+		 fread(&t,sizeof(turnos),1,tur);
+		 fread(&m,sizeof(mascota),1,mas);
+		}
+	 }
+ system("pause");
+ system("cls");
+}
 
 main ()
 {
@@ -605,21 +788,25 @@ main ()
 				case 1:
 				{
 					printf("\nIniciar Sesión\n");
+					VerifInicioSesion(u);
 					break;
 				}	
 				case 2:
 				{
 					printf("\nRegistrar Mascota\n");
+					RegMascota(m);
 					break;
 				}
 				case 3:
 				{
-					printf("\nListado de Atenciones por Veterinario y Fecha\n");
+					printf("\nRegistrar Turno\n");
+					RegTurno(t);
 					break;
 				}
 				case 4:
 				{
 					printf("\nListado de Atenciones por Veterinario y Fecha\n");
+					void ListadoAtenciones(t,m,v,auvet[);
 					break;
 				}
 
@@ -706,7 +893,7 @@ main ()
 	
 	
 	}while(op != 4);
-	}
+}
 
 
 
