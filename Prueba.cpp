@@ -887,6 +887,7 @@ main ()
 	
 	int op=-1, opcon = -1, opasis=-1, opad = -1;
 	char auvet[80];	
+	char pass [10];	
 	FILE *mas,*tur,*vet,*usu;
 	bool inisec = false;
 	turnos t; mascota m; usuario u; veterinario v;
