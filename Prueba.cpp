@@ -182,6 +182,60 @@ void Datosvet (FILE *vet, veterinario v, char pass[10])
 			scanf("%d",&op);
 			
 }
+void Turnomasc (FILE *tur, FILE *vet, FILE *mas, veterinario v, turnos t, mascota m);
+void Turnomasc (FILE *tur, FILE *vet, FILE *mas, veterinario v, turnos t, mascota m)
+{
+	
+				tur=fopen("turnos.dat","r+b");
+				vet=fopen("Veterinarios.dat","r+b");
+				mas=fopen("Mascotas.dat","r+b");
+				int i=0;
+                int op;
+				
+				system("cls");
+				printf("Lista de espera de mascotas");
+				
+				fread(&v,sizeof(veterinario),1,vet);
+				fread(&t,sizeof(turnos),1,tur);
+				fread(&m,sizeof(mascota),1,mas);
+				while(!feof(vet)||!feof(tur)||!feof(mas))
+				{
+					if(v.matricula==t.mat)
+					{
+						printf("\nTurno %d:",i+1);
+						printf("\nFecha:");
+						printf("\n\nDia: %d",t.fn.dia);
+						printf("\nMes: %d",t.fn.mes);
+						printf("\nA%co: %d",164,t.fn.anio);
+						printf("\nDNI del dueño: %d", t.dni);
+						printf("\nNombre y apellido: %s",m.apynom);
+						printf("\nEdad: %d a%cos",t.fn.anio-m.fec.anio, 164);
+						printf("\nLocalidad: ");
+						puts(m.localidad);
+						printf("\nPeso: %.2f",m.peso);
+						
+						fread(&v,sizeof(veterinario),1,vet);
+						fread(&t,sizeof(turnos),1,tur);
+						fread(&m,sizeof(mascota),1,mas);
+					}
+					else
+					{
+						fread(&v,sizeof(veterinario),1,vet);
+						fread(&t,sizeof(turnos),1,tur);
+						fread(&m,sizeof(mascota),1,mas);
+					}
+				}
+				
+				fclose(vet);
+				fclose(tur);
+				fclose(mas);
+				printf("\n\n");
+				system("pause");
+				system("cls");
+				printf("Ingrese la proxima operacion a realizar: \n\n2-Visualizar lista de espera de mascotas \n3-Registrar evolucion de los mascotas\n\n4-Salir del programa");
+				printf("\nOpcion: ");
+				scanf("%d",&op);
+}
 void reg(veterinario v,FILE *vet);
 void reg(veterinario v,FILE *vet)
 {
@@ -816,7 +870,6 @@ main ()
 	system("pause");
 	system("cls");
 	
-	
 	int op=-1, opcon = -1, opasis=-1, opad = -1;
 	char auvet[80];	
 	FILE *mas,*tur,*vet,*usu;
@@ -839,11 +892,13 @@ main ()
 					case 1:
 					{
 						printf ("\nIniciar sesion\n");
+						Datosvet (vet, v, auvet);
 						break;
 					}
 					case 2: 
 					{
 						printf("\nVisualizar Lista de Espera de Turnos\n");
+						Turnomasc (tur, vet, mas, v, t, m);
 						break;
 					}
 					case 3:
