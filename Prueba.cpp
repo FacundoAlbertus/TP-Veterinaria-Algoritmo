@@ -909,28 +909,33 @@ main ()
 					{
 						printf ("\nIniciar sesion\n");
 						Datosvet (vet, v, auvet);
+						system("pause");
 						break;
 					}
 					case 2: 
 					{
 						printf("\nVisualizar Lista de Espera de Turnos\n");
 						Turnomasc (tur, vet, mas, v, t, m);
+						system("pause");
 						break;
 					}
 					case 3:
 					{
 						printf("\nRegistrar Evolución de la Mascota\n");
 						regeva (tur, t);
+						system("pause");
 						break;
 					}
 					case 4:
 					{
 						printf("\nEl programa finalizo\n");
+						system("pause");
 						break;
 					}
 					default :
 					{
 						printf("Opcion seleccionada incorrecta");
+						system("pause");
 						break;
 					}
 				
