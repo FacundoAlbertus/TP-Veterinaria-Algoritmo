@@ -458,7 +458,7 @@ void usu(usuario u)
 		}
 	strcpy(u.usu,au);
     fwrite(&u,sizeof(usuario),1,usu);
-    printf("\nEl usuario asistente fue guardado correctamente");
+    printf("\nEl usuario asistente fue guardado correctamente\n");
     system("pause");
     system("cls");
 }
