@@ -32,7 +32,7 @@ struct turnos
     int mat;
     fecha fn;
     int dni;
-    //char detalle[380];
+    char detalle[380];
 };
 
 struct mascota
@@ -45,9 +45,6 @@ struct mascota
     float peso;
     char tel[25];
 };
-
-
-
 
 int menu ();
 int menu ()
@@ -81,9 +78,6 @@ int menuadmin()
 	return opcadmin;
 }
 
-
-
-
 int menuconsult();
 int menuconsult()
 {
@@ -116,7 +110,78 @@ int menuasistente()
 	scanf("%d", &opcasist);	
 	return opcasist;
 }
+void Datosvet (FILE *vet, veterinario v, char pass[10]);
+void Datosvet (FILE *vet, veterinario v, char pass[10])
+{
 
+   	int op, mat;
+	bool band;	
+			vet= fopen("Veterinarios.dat","r+b");
+			system("cls");
+			printf("Inicio de sesion:");
+			printf("\nIngrese su matricula: ");
+			scanf("%d",&mat);
+			fread(&v,sizeof(veterinario),1,vet);
+			band=false;
+			while(band==false)
+			{
+				while(!feof(vet))
+				{
+					if(mat==v.matricula)
+					{
+						band=true;
+						fread(&v,sizeof(veterinario),1,vet);
+					}
+					else
+					{
+						fread(&v,sizeof(veterinario),1,vet);
+					}
+				
+				}
+				if(band==false)
+				{
+					printf("\nMatricula incorrecta, porfavor, ingrese su matricula otra vez: ");
+					scanf("%d",&mat);
+				}
+				
+			}
+			printf("\nMatricula correcta, ingrese su contrasenia porfavor: ");
+			_flushall();
+			gets(pass);
+			rewind(vet);
+			fread(&v,sizeof(veterinario),1,vet);
+			band=false;
+			while(band==false)
+			{
+				while(!feof(vet))
+				{
+					if(strcmp(pass,v.contrasenia)==0)
+					{
+						band=true;
+						fread(&v,sizeof(veterinario),1,vet);
+					}
+					else
+					{
+						fread(&v,sizeof(veterinario),1,vet);
+					}
+				}
+				if(band==false)
+				{
+					printf("\nContrasenia incorrecta, porfavor ingresar su contrasenia otra vez: ");
+					_flushall();
+					gets(pass);
+				}
+			}
+			
+			printf("\nContrasenia aceptada\nSesion iniciada con exito!");
+			fclose(vet);
+			system("pause");
+			system("cls");
+			printf("Ingrese la proxima operacion a realizar: \n\n2-Visualizar lista de espera de mascotas \n3-Registrar evolucion de los mascotas\n\n4-Salir del programa");
+			printf("\nOpcion: ");
+			scanf("%d",&op);
+			
+}
 void reg(veterinario v,FILE *vet);
 void reg(veterinario v,FILE *vet)
 {
