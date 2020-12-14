@@ -74,7 +74,7 @@ int menuadmin()
 	printf("\n\n2-Registrar Usuario Asistente\n\n");
 	printf("\n\n3-Atenciones por Veterinarios\n\n");
 	printf("\n\n4-Ranking de Veterinarios por Atenciones\n\n");
-	printf("\n\n5-Cerrar la aplicación\n\n");
+	printf("\n\n5-Cerrar la aplicacion\n\n");
 	
 	printf("\nIngrese una opcion: ");
 	scanf("%d", &opcadmin);
@@ -110,7 +110,7 @@ int menuasistente()
 	printf("\n\n2-Registrar Mascota\n\n");
 	printf("\n\n3-Registrar Turno\n\n");
 	printf("\n\n4-Listado de Atenciones por Veterinario y Fecha\n\n");
-	printf("\n\n5-Cerrar la aplicación\n\n");
+	printf("\n\n5-Cerrar la aplicacion\n\n");
 	
 	printf("\nIngrese la opcion: ");
 	scanf("%d", &opcasist);	
@@ -218,6 +218,8 @@ void reg(veterinario v)
 	printf("\nIngrese el numero de telefono: ");
 	_flushall();
 	gets(v.telefono);
+	
+	system("cls");
 	
 }
 
@@ -459,8 +461,8 @@ void usu(usuario u)
     printf("\nEl usuario asistente fue guardado correctamente");
     system("pause");
     system("cls");
-    
-void ate(usuario u,turnos t,char au[80]);
+}
+void ate(usuario u,turnos t,veterinario v,char auvet[80]);
 
 void ate(usuario u,turnos t, veterinario v, char auvet[80])
 {
@@ -526,7 +528,7 @@ void rank(usuario u)
 	fread(&u,sizeof(usuario),1,user);
 	while(!feof(user))
 	{
-		if(u.cp>may)
+		if(u.cp>mayor)
 		{
 			mayor=u.cp;
 			strcpy(u.apynom,umayor);
@@ -537,12 +539,14 @@ void rank(usuario u)
 	printf("El veterinario que registro mas mascotas es: %s con %d mascotas", umayor, mayor);					
 						
 }
-}
+
 main ()
 {
 	int op=-1, opcon = -1, opasis=-1, opad = -1;
+	char auvet[80];
+	
 	turnos t; mascota m; usuario u; veterinario v;
-	do{
+	do{	
 		op=menu();
 		system ("cls");
 		switch(op)
@@ -662,7 +666,7 @@ main ()
 					case 3:
 					{
 						printf("\nAtenciones por Veterinarios\n");
-						ate(u,t, v, auvet[80]);
+						ate(u,t, v, auvet);
 						break;
 					}
 					case 4:
@@ -702,5 +706,7 @@ main ()
 	
 	
 	}while(op != 4);
-}
+	}
+
+
 
