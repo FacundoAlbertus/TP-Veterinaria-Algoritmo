@@ -170,7 +170,7 @@ void reg(veterinario v)
 							}
 							else
 							{
-								if(strlen(v.contrasenia)<6)
+								if(strlen(v.contrasenia)<6) 
 								{
 									printf("La contrasenia es muy corta, ingrese de nuevo la contrasenia: ");
 									_flushall;
@@ -222,7 +222,7 @@ void reg(veterinario v)
 	system("cls");
 	
 }
-
+void usu(usuario u);
 void usu(usuario u)
 {
 		char au [30];
@@ -232,7 +232,7 @@ void usu(usuario u)
 		usu = fopen("usuario.dat" , "a+b");
 		bool f1=false, f2=false, f3=false, f4=false, f5=false;
 		printf("\nRegistrar al usuario\n");
-		printf("\nIngrese el nombre del usuario\n\nCondiciones:\n1-Tiene que comenzar con minuscula\n2-Tener al menos dos mayusculas\n3-No mas de tres digitos");
+		printf("\nIngrese el nombre del usuario\n\nCondiciones:\n1-Tiene que comenzar con minuscula\n2-Tener al menos dos mayusculas\n3-No mas de tres digitos \n");
 		_flushall();
 		gets(au);
 		//f1==Sea unico para cada usuario
@@ -265,7 +265,7 @@ void usu(usuario u)
 			else
 			{
 				f2=false;
-				printf("\nEl nombre que ingreso no comienza con minuscula, ingrese otro\n");
+				printf("\nEl nombre que ingreso no comienza con minuscula, ingrese otro: ");
 				gets(au);
 				
 			}
@@ -687,7 +687,7 @@ main ()
 					}
 				}
 				
-			}while(opad !=4);
+			}while(opad !=5);
 			
 			break;
 		}
