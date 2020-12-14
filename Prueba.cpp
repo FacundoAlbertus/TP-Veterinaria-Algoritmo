@@ -458,6 +458,7 @@ void usu(usuario u)
 		}
 	strcpy(u.usu,au);
     fwrite(&u,sizeof(usuario),1,usu);
+    fclose(usu);
     printf("\nEl usuario asistente fue guardado correctamente\n");
     system("pause");
     system("cls");
@@ -509,8 +510,7 @@ void ate(usuario u,turnos t, veterinario v, char auvet[80])
 			fread(&v,sizeof(veterinario),1,vet);
 			fread(&t,sizeof(turnos),1,tur);
 								
-		}
-							
+		}				
 	}
 	printf("\n\n");
 	system("pause");
@@ -520,31 +520,32 @@ void rank(usuario u);
 
 void rank(usuario u)
 {
-	FILE *user;
+	FILE *usu;
 	char umayor[70];
 	int mayor,op;
-	rewind(user);
+	rewind(usu);
 						
-	fread(&u,sizeof(usuario),1,user);
-	while(!feof(user))
+	fread(&u,sizeof(usuario),1,usu);
+	while(!feof(usu))
 	{
 		if(u.cp>mayor)
 		{
 			mayor=u.cp;
 			strcpy(u.apynom,umayor);
 		}
-		fread(&u,sizeof(usuario),1,user);
+		fread(&u,sizeof(usuario),1,usu);
 	}
 						
 	printf("El veterinario que registro mas mascotas es: %s con %d mascotas", umayor, mayor);					
-						
+					
 }
 void VerifInicioSesion(usuario u);
 void VerifInicioSesion(usuario u)
 {
- FILE *user;
- user=("Usuarios.dat","r+b");
+ FILE *usu;
+ usu=fopen("Usuarios.dat","r+b");
  char iniu[10], inic[10];
+ int b1, b2;
  printf("\nUsuario: ");
 			_flushall();
 			gets(iniu);
@@ -552,11 +553,11 @@ void VerifInicioSesion(usuario u)
 			b1=false; b2=false;  
 			while(b1==false)
 			{
-				rewind(user);
-				fread(&u,sizeof(usuario),1,user);
-				while(!feof(user))
+				rewind(usu);
+				fread(&u,sizeof(usuario),1,usu);
+				while(!feof(usu))
 				{
-					if(strcmp(iniu,u.usuario)==0)
+					if(strcmp(iniu,u.usu)==0)
 					{
 						b1=true;
 					}
@@ -564,7 +565,7 @@ void VerifInicioSesion(usuario u)
 					{
 						b1=false;
 					}
-					fread(&u,sizeof(usuario),1,user);
+					fread(&u,sizeof(usuario),1,usu);
 				}
 				
 				if(b1==false)
@@ -629,11 +630,11 @@ void RegMascota(mascota m)
 			    gets(m.localidad);
 			    printf("Fecha de nacimiento:");
 			    printf("\nDia: ");
-			    scanf("%d",&m.fn.dia);
+			    scanf("%d",&m.fec.dia);
 				printf("\nMes: ");
-			    scanf("%d",&m.fn.mes);
+			    scanf("%d",&m.fec.mes);
 			    printf("\nA%co: ",164);
-			    scanf("%d",&m.fn.anio);
+			    scanf("%d",&m.fec.anio);
 			    printf("Peso (kg): ");
 			    scanf("%f",&m.peso);
 			    _flushall();
@@ -641,6 +642,7 @@ void RegMascota(mascota m)
 			    gets(m.tel);
 			    fwrite(&m,sizeof(mascota),1,mas);
 				printf("\nLa mascota fue guardado correctamente");
+				fclose(mas);
 				system("pause");
 				system("cls");   
 }
@@ -690,7 +692,7 @@ void ListadoAtenciones(turnos t, mascota m,veterinario v, char auvet[80])
 	fread(&m,sizeof(mascota),1,mas);
 	while(!feof(vet)&&!feof(tur)&&!feof(mas))
 	{
-	 if(strcmp(auxvet,v.apynom)==0)
+	 if(strcmp(auvet,v.apynom)==0)
 		{
 		 if(t.mat==v.matricula)
 		 {
@@ -725,6 +727,12 @@ void ListadoAtenciones(turnos t, mascota m,veterinario v, char auvet[80])
 
 main ()
 {
+	system("color 3a");
+	printf("\t\t\t\t\t\tBIENVENIDO\n\n\n\n\n\n\n");
+	system("pause");
+	system("cls");
+	
+	
 	int op=-1, opcon = -1, opasis=-1, opad = -1;
 	char auvet[80];
 	
@@ -806,7 +814,7 @@ main ()
 				case 4:
 				{
 					printf("\nListado de Atenciones por Veterinario y Fecha\n");
-					void ListadoAtenciones(t,m,v,auvet[);
+					ListadoAtenciones(t,m,v,auvet);
 					break;
 				}
 
