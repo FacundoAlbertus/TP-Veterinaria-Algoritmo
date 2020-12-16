@@ -110,6 +110,7 @@ int menuasistente()
 	scanf("%d", &opcasist);	
 	return opcasist;
 }
+//FUNCIONES MODULO CONSULTA
 void Datosvet (FILE *vet, veterinario v, char pass[10]);
 void Datosvet (FILE *vet, veterinario v, char pass[10])
 {
@@ -142,6 +143,7 @@ void Datosvet (FILE *vet, veterinario v, char pass[10])
 				{
 					printf("\nMatricula incorrecta, porfavor, ingrese su matricula otra vez: ");
 					scanf("%d",&mat);
+					band=true;
 				}
 				
 			}
@@ -251,12 +253,13 @@ void regeva (FILE *tur, turnos t)
 	printf("\nOpcion: ");
 	scanf("%d", &op);
 }
+//FUNCIONES MODULO ADMINISTRACION 
 void reg(veterinario v,FILE *vet);
 void reg(veterinario v,FILE *vet)
 {
 	system("cls");
 	int aceptar=false;
-	vet = fopen("veter.dat", "a+b");
+	vet = fopen("Veterinarios.dat", "a+b");
 	//printf("Registrar al veterinario\n");
 	printf("\nIngrese el nombre y apellido del veterinario: ");
 	_flushall();
@@ -355,8 +358,8 @@ void reg(veterinario v,FILE *vet)
 	system("cls");
 	
 }
-void usu(FILE *usu , usuario u);
-void usu(FILE *usu , usuario u)
+void usur(FILE *usu , usuario u);
+void usur(FILE *usu , usuario u)
 {
 		char au [30];
 		int aceptar;
@@ -598,10 +601,11 @@ void usu(FILE *usu , usuario u)
     system("pause");
     system("cls");
 }
-void ate(usuario u,turnos t,veterinario v,char auvet[80],FILE *tur,FILE *vet);
+void ate(usuario u,turnos t,veterinario v,FILE *tur,FILE *vet);
 
-void ate(usuario u,turnos t, veterinario v, char auvet[80],FILE *tur,FILE *vet)
+void ate(usuario u,turnos t, veterinario v,FILE *tur,FILE *vet)
 {
+	char auvet[80];
 	int i=0;
 	vet=fopen("Veterinarios.dat","r+b");
 	tur=fopen("turnos.dat","r+b");
@@ -650,6 +654,7 @@ void ate(usuario u,turnos t, veterinario v, char auvet[80],FILE *tur,FILE *vet)
 	system("pause");
 	system("cls");
 }
+
 void rank(usuario u,FILE *usu);
 
 void rank(usuario u,FILE *usu)
@@ -673,6 +678,7 @@ void rank(usuario u,FILE *usu)
 	printf("El veterinario que registro mas mascotas es: %s con %d mascotas", umayor, mayor);					
 					
 }
+//FUNCIONES DEL MODULO ASISTENCIA
 void VerifInicioSesion (FILE *usu , usuario u);
 void VerifInicioSesion (FILE *usu , usuario u)
 {
@@ -900,7 +906,7 @@ main ()
 		{	
 			do
 			{
-				
+				//MODULO CONSULTA
 				opcon = menuconsult();
 				system ("cls");
 				switch(opcon)
@@ -945,6 +951,7 @@ main ()
 			
 			break;
 		}
+		//MODULO ASISTENCIA
 		case 2:
 		{
 			do
@@ -1006,7 +1013,7 @@ main ()
 			}while(opasis !=5);
 			break;
 		}
-		
+		//MODULO ADMINISTRACION
 		case 3:
 		{
 			do
@@ -1026,14 +1033,14 @@ main ()
 					case 2:
 					{
 						printf("\nRegistrar Usuario Asistente\n");
-						usu(usu,u);
+						usur(usu,u);
 						system("pause");
 						break;
 					}
 					case 3:
 					{
 						printf("\nAtenciones por Veterinarios\n");
-						ate(u,t, v, auvet,tur,usu,vet);
+						ate(u,t, v,tur,vet);
 						system("pause");
 						break;
 					}
